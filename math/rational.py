@@ -12,14 +12,16 @@ class Rational:
 			return other
 
 	def __add__(self, other):
-		print(self)
-		print(other)
-
+		it = Rational(1, 1)
+		it.numinator = self.numinator * other.denominator + other.numinator * self.denominator
+		it.denominator = self.denominator * other.denominator
+		print(it.numinator)
+		print(it.denominator)
 	def __str__(self):
 		return '{}/{}'.format(self.numinator, self.denominator)
 
-
 a = Rational(2, 3)
-b = Rational(2, 5)
-a + b
-
+b = Rational(2, 3)
+print(a)
+print(b)
+it = a + b
