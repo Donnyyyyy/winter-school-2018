@@ -91,7 +91,16 @@ class Rational:
 		puff.numinator = self.numinator ** power
 		puff.denominator = self.denominator ** power
 		return puff
-
+	def __ne__(self, other):
+		if(self.numinator * other.denominator / (self.denominator * other.denominator) == other.numinator * self.denominator / (other. denominator * self.denominator)):
+			return False
+		else:
+			return True
+	def __eq__(self, other):
+		if(self.numinator * other.denominator / (self.denominator * other.denominator) == other.numinator * self.denominator / (other. denominator * self.denominator)):
+			return True
+		else:
+			return False
 def evklid(den, noun):
 	dencopy = den
 	nouncopy = noun
@@ -132,3 +141,7 @@ else:
 print('puff')
 module = 2
 print(a ** module)
+print('neravn')
+print(b != a)
+print('ravn')
+print(b == a)
