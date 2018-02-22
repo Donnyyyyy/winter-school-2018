@@ -19,18 +19,22 @@ class Rational:
 	def denominator(self, value):
 		self.__denominator = int(value)
 
-	def __it__(self, other):
-		if(self.numinator * other.denominator / (self.denominator * other.denominator) > other.numinator * self.denominator / (other.denominator * self.denominator)):
-			return self
+	def __lt__(self, other):
+		num = self.denominator * other.denominator
+		numcopy = other.numinator * self.denominator
+		if(num > numcopy):
+			return False
 		else:
-			return other
+			return True
 
 
 	def __gt__(self, other):
-		if(self.numinator * other.denominator / (self.denominator * other.denominator) < other.numinator * self.denominator / (other.denominator * self.denominator)):
-			return other
+		num = self.denominator * other.denominator
+		numcopy = other.numinator * self.denominator
+		if(num < numcopy):
+			return False
 		else:
-			return self
+			return True
 
 
 	def __add__(self, other):
@@ -38,7 +42,6 @@ class Rational:
 		if(self.denominator == other.denominator):
 			it.numinator = self.numinator + other.numinator
 			it.denominator = self.denominator
-			print(it)
 			per =  evklid(it.numinator, it.denominator)
 			it.numinator /= per
 			it.denominator /= per
@@ -91,26 +94,53 @@ class Rational:
 		puff.numinator = self.numinator ** power
 		puff.denominator = self.denominator ** power
 		return puff
+
+
 	def __ne__(self, other):
-		if(self.numinator * other.denominator / (self.denominator * other.denominator) == other.numinator * self.denominator / (other. denominator * self.denominator)):
+		num = self.denominator * other.denominator
+		numcopy = other.numinator * self.denominator
+		if(num == numcopy):
 			return False
 		else:
 			return True
+
+
 	def __eq__(self, other):
-		if(self.numinator * other.denominator / (self.denominator * other.denominator) == other.numinator * self.denominator / (other. denominator * self.denominator)):
+		num = self.denominator * other.denominator
+		numcopy = other.numinator * self.denominator
+		if(num == numcopy):
 			return True
 		else:
 			return False
+
+
+	def __le__(self, other):
+		num = self.denominator * other.denominator
+		numcopy = other.numinator * self.denominator
+		if(num <= numcopy):
+			return True
+		else:
+			return False
+
+
+	def __ge__(self, other):
+		num = self.denominator * other.denominator
+		numcopy = other.numinator * self.denominator
+		if(num <= numcopy):
+			return False
+		else:
+			return True
+
 def evklid(den, noun):
 	dencopy = den
-	nouncopy = noun
-	while(dencopy != 0 and nouncopy != 0):
-		if(dencopy > nouncopy):
-			dencopy = dencopy % nouncopy
+	numcopy = noun
+	while(dencopy != 0 and numcopy != 0):
+		if(dencopy > numcopy):
+			dencopy = dencopy % numcopy
 		else:
-			nouncopy = nouncopy % dencopy	
-	return nouncopy + dencopy
-a = Rational(2, 3)
+			numcopy = numcopy % dencopy	
+	return numcopy + dencopy
+a = Rational(10, 5)
 b = Rational(2, 3)
 print(a)
 print(b)
@@ -125,16 +155,15 @@ print('multy')
 print(mult)
 diver = a / b
 print('antimulty')
-print(diver)
+print(diver)		
 print('srvnen')
 srvn = a > b
-if(srvn == a):
-	print(a > b)
-else:
-	print(b > a)
+print('a == b')
+print(a == b)
+print(a > b)
 print('sravne')
-srvne = b > a
-if(srvne == b):
+srvne = b < a
+if(b == a):
 	print(b > a)
 else:
 	print(b < a) 
@@ -145,3 +174,9 @@ print('neravn')
 print(b != a)
 print('ravn')
 print(b == a)
+print('ravnor')
+ravn = a <= b
+print(ravn)
+print('ravnorobor')
+ravnore = a >= b
+print(ravnore)
